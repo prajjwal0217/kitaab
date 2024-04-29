@@ -9,11 +9,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/kitaab")
 public class kitaabController {
+    
     kitaabservice KitaabService;
+    
+    @Autowired
     public kitaabController(kitaabservice kitaabService) {
         this.KitaabService = kitaabService;
     }
-    @GetMapping({"/kitaabId"})
+    @GetMapping("/{kitaabId}")
     public Kitaab getKitaabDetails(@PathVariable("kitaabId") String kitaabId){
         return KitaabService.getKitaab(kitaabId);
     }
