@@ -10,30 +10,37 @@ import java.util.List;
 @RequestMapping("/kitaab")
 public class kitaabController {
     kitaabservice KitaabService;
+
+    @Autowired
     public kitaabController(kitaabservice kitaabService) {
         this.KitaabService = kitaabService;
     }
-    @GetMapping({"/kitaabId"})
+    
+    @GetMapping({"/{kitaabId}"})
     public Kitaab getKitaabDetails(@PathVariable("kitaabId") String kitaabId){
         return KitaabService.getKitaab(kitaabId);
     }
-    @GetMapping()
+    
+    @GetMapping("/getall")
     public List<Kitaab> getAllKitaabDetails(){
         return KitaabService.getAllKitaab();
     }
-    @PostMapping
+    
+    @PostMapping("/add")
     public String createKitaabDetails(@RequestBody Kitaab kitaab){
-        KitaabService.createKitaab(kitaab);
-        return "Kitaab created successfully";
+        return KitaabService.createKitaab(kitaab);
+        //return "Kitaab created successfully";
     }
-    @PutMapping
+    
+    @PutMapping("/updatekitaab")
     public String updateKitaabDetails(@RequestBody Kitaab kitaab){
-        KitaabService.updateKitaab(kitaab);
-        return "Kitaab updated Successfully";
+       return KitaabService.updateKitaab(kitaab);
+        //return "Kitaab updated Successfully";
     }
-    @DeleteMapping("{kitaabId}")
-    public String deleteKitaabdetails(@PathVariable("kitaabId")String kitaabId){
-        KitaabService.deleteKitaab(kitaabId);
-        return " kitaab deleted successfully";
+    
+    @DeleteMapping("delete/{kitaabId}")
+    public String deleteKitaabdetails(@PathVariable("kitaabId") String kitaabId){
+        return KitaabService.deleteKitaab(kitaabId);
+        //return " kitaab deleted successfully";
     }
 }
