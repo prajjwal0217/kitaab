@@ -11,6 +11,7 @@ import java.util.List;
 public class kitaabserviceImpl implements kitaabservice {
     kitaabRepository KitaabRepository;
 
+    @Autowired
     public kitaabserviceImpl(kitaabRepository KitaabRepository){
         this.KitaabRepository = KitaabRepository;
     }
